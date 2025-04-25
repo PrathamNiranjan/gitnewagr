@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Price Prediction - KrishiConnect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Crop Price Prediction</h1>
+    <form method="POST">
+        <label for="crop">Select Crop:</label>
+        <select id="crop" name="crop">
+            <option value="Rice">Rice</option>
+            <option value="Wheat">Wheat</option>
+            <option value="Maize">Maize</option>
+        </select>
+        <label for="location">Select Location:</label>
+        <select id="location" name="location">
+            <option value="Bangalore">Bangalore</option>
+            <option value="Mysore">Mysore</option>
+            <option value="Hubli">Hubli</option>
+        </select>
+        <button type="submit">Predict</button>
+    </form>
+    {% if predictions %}
+    <h2>Price Prediction for {{ crop }} in {{ location }}</h2>
+    <table>
+        <tr>
+            <th>Month</th>
+            <th>Predicted Price (₹)</th>
+        </tr>
+        {% for month, price in zip(months, predictions) %}
+        <tr>
+            <td>{{ month }}</td>
+            <td>{{ "%.2f" | format(price) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>

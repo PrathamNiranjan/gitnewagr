@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiConnect - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to KrishiConnect</h1>
+    <h2>Current Average Crop Prices in Karnataka</h2>
+    <table>
+        <tr>
+            <th>Crop</th>
+            <th>Average Price (₹)</th>
+        </tr>
+        {% for crop in avg_prices %}
+        <tr>
+            <td>{{ crop['Crop'] }}</td>
+            <td>{{ "%.2f" | format(crop['Price']) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

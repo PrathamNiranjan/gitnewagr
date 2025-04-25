@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation - KrishiConnect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Crop Recommendation</h1>
+    <form method="POST">
+        <label for="location">Select Location:</label>
+        <select id="location" name="location">
+            <option value="Bangalore">Bangalore</option>
+            <option value="Mysore">Mysore</option>
+            <option value="Hubli">Hubli</option>
+        </select>
+        <label for="soil_type">Select Soil Type:</label>
+        <select id="soil_type" name="soil_type">
+            <option value="Loam">Loam</option>
+            <option value="Clay">Clay</option>
+            <option value="Sandy">Sandy</option>
+        </select>
+        <label for="land_size">Land Size (in acres):</label>
+        <input type="number" id="land_size" name="land_size" step="0.1" required>
+        <button type="submit">Recommend</button>
+    </form>
+    {% if recommendations %}
+    <h2>Recommended Crops</h2>
+    <table>
+        <tr>
+            <th>Crop</th>
+            <th>Profit Level</th>
+            <th>Demand Level</th>
+        </tr>
+        {% for rec in recommendations %}
+        <tr>
+            <td>{{ rec['Crop'] }}</td>
+            <td>{{ rec['Profit Level'] }}</td>
+            <td>{{ rec['Demand Level'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
