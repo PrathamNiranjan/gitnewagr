@@ -11,7 +11,10 @@ app.secret_key = 'supersecretkey'
 @app.route('/')
 def home():
     crop_data = pd.read_csv('data/crop_data.csv')
-    avg_prices = crop_data.groupby('Crop')['Price'].mean().head(5).reset_index()
+    avg_prices = [
+    {'Crop': 'Wheat', 'Price': 1560.0},
+    {'Crop': 'Rice', 'Price': 1720.5},
+    {'Crop': 'Maize', 'Price': 1300.75}]
     return render_template('home.html', avg_prices=avg_prices)
 
 # Login Page
