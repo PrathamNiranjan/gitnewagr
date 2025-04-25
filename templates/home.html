@@ -16,7 +16,7 @@
         </tr>
         {% for crop in avg_prices %}
         <tr>
-            <td>{{ crop['Crop'] }}</td>
+            <td>{{ crop }}</td>  <!-- if crop is just a string -->
             <td>{{ "%.2f" | format(crop['Price']) }}</td>
         </tr>
         {% endfor %}
